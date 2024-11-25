@@ -674,6 +674,9 @@
         </div>
     </footer>
 <script>
+     window.onbeforeunload = function() {
+        return "All data will be lost if you leave this page. Are you sure you want to continue?";
+    };
         // Habit Class with enhanced features
         class Habit {
             constructor(name, icon) {
