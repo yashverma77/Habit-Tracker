@@ -677,6 +677,24 @@
      window.onbeforeunload = function() {
         return "All data will be lost if you leave this page. Are you sure you want to continue?";
     };
+    window.onbeforeunload = function () {
+    return "All data will be lost if you leave this page. Are you sure you want to continue?";
+};
+
+// Ensure localStorage is cleared only when the tab is closed, not on refresh.
+window.addEventListener('beforeunload', (event) => {
+    if (!sessionStorage.getItem('isSessionActive')) {
+        localStorage.removeItem('habits');
+        localStorage.removeItem('achievements');
+    }
+});
+
+// Mark session as active when the page loads
+window.addEventListener('load', () => {
+    sessionStorage.setItem('isSessionActive', 'true');
+});
+
+    
         // Habit Class with enhanced features
         class Habit {
             constructor(name, icon) {
